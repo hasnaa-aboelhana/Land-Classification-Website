@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Land Cover Classifier</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">EYOUTH Graduation Project · CAI4_AIS2_S13</p>
+    <h1>Land Cover <span>Classifier</span></h1>
+    <p class="subtitle">Upload a satellite image tile and our ResNet50 model will identify the land type in real time.</p>
+  </header>
+
+  <main>
+
+    <!-- Upload -->
+    <div class="card">
+      <p class="card-title">Upload Image</p>
+      <div id="dropzone">
+        <input type="file" id="file-input" accept="image/*">
+        <span class="drop-icon">🛰️</span>
+        <p class="drop-label"><strong>Choose a file</strong> or drag it here</p>
+        <p class="drop-hint">JPG · PNG · 64×64 EuroSAT tile recommended</p>
+      </div>
+
+      <div id="preview-section">
+        <img id="preview-img" alt="Selected image preview">
+        <div class="preview-meta">
+          <div class="meta-row">
+            <span class="meta-label">File name</span>
+            <span class="meta-value" id="meta-name">—</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">File size</span>
+            <span class="meta-value" id="meta-size">—</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Dimensions</span>
+            <span class="meta-value" id="meta-dims">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Classify button -->
+    <button id="classify-btn">Classify Image →</button>
+
+    <!-- Loading -->
+    <div id="loading">
+      <div class="spinner"></div>
+      <span class="loading-text">Sending to model · ResNet50 · EuroSAT</span>
+    </div>
+
+    <!-- Error -->
+    <div id="error-msg"></div>
+
+    <!-- Result -->
+    <div class="card" id="result-section">
+      <p class="card-title">Classification Result</p>
+      <div class="result-inner">
+        <div class="result-badge" id="result-badge">🌍</div>
+        <div class="result-details">
+          <div class="result-class" id="result-class">—</div>
+          <div class="result-confidence-row">
+            <div class="confidence-bar-track">
+              <div class="confidence-bar-fill" id="confidence-bar"></div>
+            </div>
+            <span class="confidence-pct" id="confidence-pct">—</span>
+          </div>
+          <p class="result-description" id="result-desc"></p>
+        </div>
+      </div>
+      <button id="reset-btn">← Classify another image</button>
+    </div>
+
+    <!-- Legend -->
+    <div class="card">
+      <p class="card-title">Supported Land Classes</p>
+      <div class="legend-grid" id="legend-grid"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    Model deployed on Hugging Face Spaces · Supervised by Eng. Mahmoud Talaat
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
